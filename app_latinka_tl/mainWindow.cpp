@@ -1,6 +1,5 @@
 #include "mainWindow.h"
-#include "latinkaConverter.h"
-#include "latinkaConverterStd.h"
+#include "lib_latinka_tl/latinkaConverter.h"
 
 MainWindow::MainWindow()
 {
@@ -24,8 +23,6 @@ MainWindow::MainWindow()
 
 void MainWindow::updateLatinka()
 {
-//    static LatinkaConverter latinka;
-//    m_result->setText(latinka.toLatinka(m_textEdit->toPlainText()));
-    static LatinkaConverterStd latinkaStd;
-    m_result->setText(QString::fromStdWString(latinkaStd.toLatinka(m_textEdit->toPlainText().toStdWString())));
+    auto newText = Latinka::Converter::toLatinka(m_textEdit->toPlainText().toStdWString());
+    m_result->setText(QString::fromStdWString(newText));
 }

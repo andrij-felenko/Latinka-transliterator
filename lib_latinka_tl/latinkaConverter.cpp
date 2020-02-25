@@ -1,33 +1,34 @@
-#include "latinkaConverterStd.h"
+#include "latinkaConverter.h"
 #include <locale>
 
-LatinkaConverterStd::LatinkaConverterStd()
+Latinka::Converter::Converter()
 {
     m_consonantal = L"йцкнгшщзхфвпрлджчсмтьбґ";
     m_loud        = L"іеауои";
     m_doubleLoud  = L"їєяю";
 }
 
-std::wstring LatinkaConverterStd::toLatinka(std::wstring text)
+std::wstring Latinka::Converter::toLatinka(std::wstring text)
 {
+    Converter ltl;
     std::wstring result = L"";
     std::wstring word = L"";
     for (auto it : text){
-        if (isLetter(it)){
+        if (ltl.isLetter(it)){
             word += it;
             continue;
         }
-        retranslate(word);
+        ltl.retranslate(word);
         result += word;
         word = L"";
         result += it;
     }
-    retranslate(word);
+    ltl.retranslate(word);
     result += word;
     return result;
 }
 
-void LatinkaConverterStd::retranslate(std::wstring &str)
+void Latinka::Converter::retranslate(std::wstring &str)
 {
     if (str.empty())
         return;
@@ -57,7 +58,7 @@ void LatinkaConverterStd::retranslate(std::wstring &str)
     str = result;
 }
 
-bool LatinkaConverterStd::isLoud(const wchar_t &c)
+bool Latinka::Converter::isLoud(const wchar_t &c)
 {
     auto c_ = std::towlower(c);
     for (auto it : m_loud)
@@ -66,7 +67,7 @@ bool LatinkaConverterStd::isLoud(const wchar_t &c)
     return isDoubleLoud(c);
 }
 
-bool LatinkaConverterStd::isDoubleLoud(const wchar_t &c)
+bool Latinka::Converter::isDoubleLoud(const wchar_t &c)
 {
     auto c_ = std::towlower(c);
     for (auto it : m_doubleLoud)
@@ -75,7 +76,7 @@ bool LatinkaConverterStd::isDoubleLoud(const wchar_t &c)
     return false;
 }
 
-bool LatinkaConverterStd::isConsonantal(const wchar_t &c)
+bool Latinka::Converter::isConsonantal(const wchar_t &c)
 {
     auto c_ = std::towlower(c);
     for (auto it : m_consonantal)
@@ -84,7 +85,7 @@ bool LatinkaConverterStd::isConsonantal(const wchar_t &c)
     return false;
 }
 
-bool LatinkaConverterStd::isLetter(const wchar_t &c)
+bool Latinka::Converter::isLetter(const wchar_t &c)
 {
     if (isLoud(c))
         return true;
@@ -97,7 +98,14 @@ bool LatinkaConverterStd::isLetter(const wchar_t &c)
     return false;
 }
 
-std::wstring LatinkaConverterStd::translateLetter(wchar_t c)
+bool Latinka::Converter::isSizzling(const wchar_t &c)
+{
+    if (c == m_consonantal[5] || c == m_consonantal[6] || c == m_consonantal[16])
+        return true;
+    return false;
+}
+
+std::wstring Latinka::Converter::translateLetter(wchar_t c)
 {
     std::wstring c_;
     bool isLower = std::iswlower(c);
@@ -142,10 +150,10 @@ std::wstring LatinkaConverterStd::translateLetter(wchar_t c)
     return c_;
 }
 
-std::wstring LatinkaConverterStd::translateLetter(wchar_t first, wchar_t second)
+std::wstring Latinka::Converter::translateLetter(wchar_t first, wchar_t second)
 {
     std::wstring res = translateLetter(first);
-    if (second != L'\'')
+    if (second != L'\'' && !isSizzling(first))
         res += L"\u030C";
 
     if (isDoubleLoud(second)){
