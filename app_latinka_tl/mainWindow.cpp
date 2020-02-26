@@ -23,6 +23,6 @@ MainWindow::MainWindow()
 
 void MainWindow::updateLatinka()
 {
-    auto newText = Latinka::Converter::toLatinka(m_textEdit->toPlainText().toStdWString());
+    auto newText = Latinka::Converter::run(Latinka::Alphabet::Latin,m_textEdit->toPlainText().toStdWString());
     m_result->setText(QString::fromStdWString(newText));
 }
