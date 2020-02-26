@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>choven.txt</file>
-        <file>icon.png</file>
         <file>alphabet.html</file>
         <file>rules.html</file>
         <file>xkb.html</file>
         <file>keyboard_layout.html</file>
+        <file>latynka.svg</file>
     </qresource>
 </RCC>

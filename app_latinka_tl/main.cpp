@@ -12,8 +12,8 @@ int main(int argc, char** argv)
     QApplication app(argc, argv);
 
     MainWindow w;
-    w.setWindowTitle("Latinka translitterator");
-    w.setWindowIcon(QIcon(":/icon.png"));
+    w.setWindowTitle("Латинкова транслітерація");
+    w.setWindowIcon(QIcon(":/latynka.svg"));
     w.show();
 
     return app.exec();

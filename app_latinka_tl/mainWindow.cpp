@@ -50,12 +50,12 @@ void MainWindow::createTranslitterateWindow()
     mainLayout->setMargin(10);
 
     convertWidget->setLayout(mainLayout);
-    this->addTab(convertWidget, "Convert");
+    this->addTab(convertWidget, "Транслітерування");
 
     QObject::connect(switchB, &QPushButton::clicked, [=](){
         currentAlp = currentAlp == Latinka::Alphabet::Latin ? Latinka::Alphabet::Cyrillic : Latinka::Alphabet::Latin;
-        m_left->setText(currentAlp == Latinka::Alphabet::Latin ? "Latinka" : "Українська");
-        m_right->setText(currentAlp == Latinka::Alphabet::Latin ? "Українська" : "Latinka");
+        m_left->setText(currentAlp == Latinka::Alphabet::Latin ? "Latynka" : "Українська");
+        m_right->setText(currentAlp == Latinka::Alphabet::Latin ? "Українська" : "Latynka");
         m_textEdit->setText(m_result->toPlainText());
     });
     switchB->click();
@@ -87,13 +87,13 @@ void MainWindow::createHelpWindow()
     alpHtml->setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
     alpLayout->addWidget(alpHtml);
     alpLayout->addWidget(new QWidget(this));
-    addTab(alpWidget, "Alphabet");
+    addTab(alpWidget, "Aлфавіт");
 
     QTextBrowser* rulesHtml = new QTextBrowser();
     rulesHtml->setSource(QUrl("qrc:/rules.html"));
     rulesHtml->setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
     rulesHtml->setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
-    addTab(rulesHtml, "Rules");
+    addTab(rulesHtml, "Правила");
 
     QTextBrowser* xkbHtml = new QTextBrowser();
     xkbHtml->setSource(QUrl("qrc:/xkb.html"));
@@ -110,5 +110,5 @@ void MainWindow::createHelpWindow()
     keybLayout->addWidget(keybHtml);
     keybLayout->addWidget(new QWidget(this));
     keybWidget->setLayout(keybLayout);
-    addTab(keybWidget, "Keyboard layout");
+    addTab(keybWidget, "Розкладка");
 }
