@@ -33,7 +33,6 @@ Latinka::Converter::Converter()
     addLetter(LType::Loud, L"o", L"O", L"о", L"О");
     addLetter(LType::Loud, L"y", L"Y", L"и", L"И");
 
-    addLetter(LType::Hissing, L"x",  L"X",  L"х",  L"Х");
     addLetter(LType::Hissing, L"ć",  L"Č",  L"ч",  L"Ч");
     addLetter(LType::Hissing, L"ś",  L"Š",  L"ш",  L"Ш");
     addLetter(LType::Hissing, L"ść", L"Šč", L"щ",  L"Щ");
@@ -89,11 +88,6 @@ bool Latinka::Converter::Letter::isUkrajinska(const std::wstring &letter) const
 bool Latinka::Converter::Letter::isLower(const std::wstring &letter) const
 {
     return latinLower == letter || ukrajinskaLower == letter;
-}
-
-bool Latinka::Converter::Letter::isUpper(const std::wstring &letter) const
-{
-    return latinUpper == letter || ukrajinskaUpper == letter;
 }
 
 Latinka::Converter::LType Latinka::Converter::getLetterType(const std::wstring &str) const
@@ -249,28 +243,6 @@ std::wstring Latinka::Converter::translitterateLetter(const Alphabet &from, cons
     if (from == Alphabet::Latin)
         return toUkrajinska(c);
     return toLatin(c);
-}
-
-std::wstring Latinka::Converter::toLower(const std::wstring &letter) const
-{
-    for (auto it : m_list){
-        if (it.isLatin(letter))
-            return it.latinLower;
-        if (it.isUkrajinska(letter))
-            return it.ukrajinskaLower;
-    }
-    return letter;
-}
-
-std::wstring Latinka::Converter::toUpper(const std::wstring &letter) const
-{
-    for (auto it : m_list){
-        if (it.isLatin(letter))
-            return it.latinUpper;
-        if (it.isUkrajinska(letter))
-            return it.ukrajinskaUpper;
-    }
-    return letter;
 }
 
 std::wstring Latinka::Converter::toLatin(const std::wstring &letter) const

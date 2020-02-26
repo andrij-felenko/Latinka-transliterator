@@ -42,7 +42,6 @@ private:
         bool isLatin     (const std::wstring& letter) const;
         bool isUkrajinska(const std::wstring& letter) const;
         bool isLower     (const std::wstring& letter) const;
-        bool isUpper     (const std::wstring& letter) const;
     };
     typedef Letter::Type LType;
     inline std::wstring toWStr(const wchar_t& c) const;
@@ -59,8 +58,6 @@ private:
     bool isLower(const std::wstring& l) const;
     bool testSoftLetterWithDoubleEnd(const std::wstring& str) const;
 
-    std::wstring toLower     (const std::wstring& letter) const;
-    std::wstring toUpper     (const std::wstring& letter) const;
     std::wstring toLatin     (const std::wstring& letter) const;
     std::wstring toUkrajinska(const std::wstring& letter) const;
 
