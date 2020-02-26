@@ -33,10 +33,10 @@ Latinka::Converter::Converter()
     addLetter(LType::Loud, L"o", L"O", L"о", L"О");
     addLetter(LType::Loud, L"y", L"Y", L"и", L"И");
 
-    addLetter(LType::Hissing, L"ć",  L"Č",  L"ч",  L"Ч");
-    addLetter(LType::Hissing, L"ś",  L"Š",  L"ш",  L"Ш");
-    addLetter(LType::Hissing, L"ść", L"Šč", L"щ",  L"Щ");
-    addLetter(LType::Hissing, L"w",  L"W",  L"вв", L"Вв");
+    addLetter(LType::NoSoftly, L"ć",  L"Č",  L"ч",  L"Ч");
+    addLetter(LType::NoSoftly, L"ś",  L"Š",  L"ш",  L"Ш");
+    addLetter(LType::NoSoftly, L"ść", L"Šč", L"щ",  L"Щ");
+    addLetter(LType::NoSoftly, L"w",  L"W",  L"вв", L"Вв");
 
     addLetter(LType::Consonantal, L"j", L"J", L"й", L"Й");
     addLetter(LType::Consonantal, L"c", L"C", L"ц", L"Ц");
@@ -180,7 +180,7 @@ std::wstring Latinka::Converter::translitterateWord(const Alphabet &from, std::w
                                              || (getLetterType(str[0]) == LType::Consonantal
                                                  && getLetterType(str[1]) == LType::DoubleLoud)))
              || (from == Alphabet::Latin && (isLetterCompareAlphabet(Alphabet::Latin, str.substr(0, 2))
-                                             || (str[1] == L'\u030C' && getLetterType(str[0]) != Letter::Hissing)))){
+                                             || (str[1] == L'\u030C' && getLetterType(str[0]) != Letter::NoSoftly)))){
         result += translitterateLetter(from, str[0], str[1]);
         str.erase(0, 2);
         result += translitterateWord(from, str);
@@ -201,7 +201,7 @@ std::wstring Latinka::Converter::translitterateLetter(const Alphabet& from, cons
             return res += isLower(c1) ? L"w" : L"W";
         else {
             res += translitterateLetter(from, c1);
-            if (c2 != L"\'" && getLetterType(c1) != LType::Hissing)
+            if (c2 != L"\'" && getLetterType(c1) != LType::NoSoftly)
                 res += L"\u030C";
 
             if (getLetterType(c2) == LType::DoubleLoud){
@@ -217,7 +217,7 @@ std::wstring Latinka::Converter::translitterateLetter(const Alphabet& from, cons
         }
         else if (c1 == L"j" || c1 == L"J") // doubleLoud Letter
             res += translitterateLetter(from, c1 + c2);
-        else if (c2 == L"\u030C" && getLetterType(c1 + c2) == Letter::Hissing)
+        else if (c2 == L"\u030C" && getLetterType(c1 + c2) == Letter::NoSoftly)
             res += translitterateLetter(from, c1 + c2);
         else if (c2 == L"\u030C"){
             res += translitterateLetter(from, c1);

@@ -28,7 +28,7 @@ private:
             Loud,
             DoubleLoud,
             Consonantal,
-            Hissing,
+            NoSoftly,
             None = 0xFF
             };
 
