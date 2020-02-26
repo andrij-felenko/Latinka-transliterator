@@ -6,7 +6,7 @@ std::wstring Latinka::Converter::run(Alphabet from, std::wstring text)
     std::wstring result = L"";
     std::wstring word = L"";
     for (auto it : text){
-        if (ltl.isLetterCompareAlphabet(from, std::wstring(&it))){
+        if (ltl.isLetterCompareAlphabet(from, ltl.toWStr(it))){
             word += it;
             continue;
         }
@@ -33,10 +33,11 @@ Latinka::Converter::Converter()
     addLetter(LType::Loud, L"o", L"O", L"о", L"О");
     addLetter(LType::Loud, L"y", L"Y", L"и", L"И");
 
-    addLetter(LType::Hissing, L"x",  L"X",  L"х", L"Х");
-    addLetter(LType::Hissing, L"ć",  L"Č",  L"ч", L"Ч");
-    addLetter(LType::Hissing, L"ś",  L"Š",  L"ш", L"Ш");
-    addLetter(LType::Hissing, L"ść", L"Šč", L"щ", L"Щ");
+    addLetter(LType::Hissing, L"x",  L"X",  L"х",  L"Х");
+    addLetter(LType::Hissing, L"ć",  L"Č",  L"ч",  L"Ч");
+    addLetter(LType::Hissing, L"ś",  L"Š",  L"ш",  L"Ш");
+    addLetter(LType::Hissing, L"ść", L"Šč", L"щ",  L"Щ");
+    addLetter(LType::Hissing, L"w",  L"W",  L"вв", L"Вв");
 
     addLetter(LType::Consonantal, L"j", L"J", L"й", L"Й");
     addLetter(LType::Consonantal, L"c", L"C", L"ц", L"Ц");
@@ -109,9 +110,9 @@ Latinka::Alphabet Latinka::Converter::getLetterAlphabet(const std::wstring &str)
         return Alphabet::SubLetter;
 
     for (auto it : m_list){
-        if (it.latinLower == str || it.latinUpper == str)
+        if (it.isLatin(str))
             return Alphabet::Latin;
-        if (it.ukrajinskaLower == str || it.ukrajinskaUpper == str)
+        if (it.isUkrajinska(str))
             return Alphabet::Cyrillic;
     }
     return Alphabet::Other;
@@ -119,18 +120,44 @@ Latinka::Alphabet Latinka::Converter::getLetterAlphabet(const std::wstring &str)
 
 Latinka::Converter::LType Latinka::Converter::getLetterType(const wchar_t &l) const
 {
-    return getLetterType(std::wstring(&l));
+    return getLetterType(toWStr(l));
 }
 
 Latinka::Alphabet Latinka::Converter::getLetterAlphabet(const wchar_t &l) const
 {
-    return getLetterAlphabet(std::wstring(&l));
+    return getLetterAlphabet(toWStr(l));
 }
 
 bool Latinka::Converter::isLetterCompareAlphabet(const Alphabet &type, const std::wstring &str) const
 {
     auto alp = getLetterAlphabet(str);
-    return alp == type || (alp == Alphabet::SubLetter && type == Alphabet::Cyrillic);
+    return alp == type || (alp == Alphabet::SubLetter && type == Alphabet::Cyrillic)
+           || (type == Alphabet::Latin && str == L"\u030C");
+}
+
+bool Latinka::Converter::isLower(const std::wstring &l) const
+{
+    for (auto it : m_list)
+        if (it.contains(l))
+            return it.isLower(l);
+    return false;
+}
+
+bool Latinka::Converter::testSoftLetterWithDoubleEnd(const std::wstring &str) const
+{
+    if (str.size() < 3)
+        return false;
+    if (str[1] != L'\u030C')
+        return false;
+    return str[2] == L'a' || str[2] == L'A' || str[2] == L'e' || str[2] == L'E'
+           || str[2] == L'i' || str[2] == L'I' || str[2] == L'u' || str[2] == L'U';
+}
+
+std::wstring Latinka::Converter::toWStr(const wchar_t &c) const
+{
+    std::wstring str;
+    str.push_back(c);
+    return str;
 }
 
 std::wstring Latinka::Converter::translitterateWord(const Alphabet &from, std::wstring str) const
@@ -139,12 +166,27 @@ std::wstring Latinka::Converter::translitterateWord(const Alphabet &from, std::w
     if (str.empty())
         return L"";
 
+    size_t strSize = str.size();
+
 //     if only one letter
-    if (str.size() == 1)
+    if (strSize == 1)
         return translitterateLetter(from, str);
 
     std::wstring result = L"";
-    if (getLetterAlphabet(str[1]) == Alphabet::SubLetter || (getLetterType(str[0]) == LType::Consonantal && getLetterType(str[1]) == LType::DoubleLoud)){
+
+    if (from == Alphabet::Latin && testSoftLetterWithDoubleEnd(str)){
+        auto soft = toWStr(str[0]);
+        soft += str[1];
+        result += translitterateLetter(from, soft, toWStr(str[2]));
+        str.erase(0, 3);
+        result += translitterateWord(from, str);
+    }
+    else if ((from == Alphabet::Cyrillic && (getLetterAlphabet(str[1]) == Alphabet::SubLetter
+                                             || ((str[0] == L'в' || str[0] == L'В') && str[1] == L'в')
+                                             || (getLetterType(str[0]) == LType::Consonantal
+                                                 && getLetterType(str[1]) == LType::DoubleLoud)))
+             || (from == Alphabet::Latin && (isLetterCompareAlphabet(Alphabet::Latin, str.substr(0, 2))
+                                             || str[1] == L'\u030C'))){
         result += translitterateLetter(from, str[0], str[1]);
         str.erase(0, 2);
         result += translitterateWord(from, str);
@@ -159,25 +201,47 @@ std::wstring Latinka::Converter::translitterateWord(const Alphabet &from, std::w
 
 std::wstring Latinka::Converter::translitterateLetter(const Alphabet& from, const std::wstring &c1, const std::wstring &c2) const
 {
-    std::wstring res = translitterateLetter(from, c1);
-    if (c2 == L"\'" && getLetterType(c1) != LType::Hissing)
-        res += L"\u030C";
+    std::wstring res;
+    if (from == Alphabet::Cyrillic){
+        if (c2 == L"в")
+            return res += isLower(c1) ? L"w" : L"W";
+        else {
+            res += translitterateLetter(from, c1);
+            if (c2 != L"\'" && getLetterType(c1) != LType::Hissing)
+                res += L"\u030C";
 
-    if (getLetterType(c2) == LType::DoubleLoud){
-        auto letter = translitterateLetter(from, c2);
-        res += letter[1];
+            if (getLetterType(c2) == LType::DoubleLoud){
+                auto letter = translitterateLetter(from, c2);
+                res += letter[1];
+            }
+        }
     }
+    else if (from == Alphabet::Latin){
+        if (c1.size() == 2){ // for soft letter and loud, it convert to consonantal + doubleLoud
+            res += translitterateLetter(from, c1[0]);
+            res += translitterateLetter(from, L'j' + c2);
+        }
+        else if (c1 == L"j" || c1 == L"J") // doubleLoud Letter
+            res += translitterateLetter(from, c1 + c2);
+        else if (c2 == L"\u030C"){
+            res += translitterateLetter(from, c1);
+            res += L'ь';
+        }
+        else if (c2 == L"ć") // ść to щ
+            res += translitterateLetter(from, c1 + c2);
+    }
+
     return res;
 }
 
 std::wstring Latinka::Converter::translitterateLetter(const Alphabet &from, const wchar_t &c1, const wchar_t &c2) const
 {
-    return translitterateLetter(from, std::wstring(&c1), std::wstring(&c2));
+    return translitterateLetter(from, toWStr(c1), toWStr(c2));
 }
 
 std::wstring Latinka::Converter::translitterateLetter(const Alphabet &from, const wchar_t &c) const
 {
-    return translitterateLetter(from, std::wstring(&c));
+    return translitterateLetter(from, toWStr(c));
 }
 
 std::wstring Latinka::Converter::translitterateLetter(const Alphabet &from, const std::wstring &c) const

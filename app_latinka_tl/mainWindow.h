@@ -2,6 +2,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QLabel>
+#include "lib_latinka_tl/latinkaConverter.h"
 
 class MainWindow : public QWidget
 {
@@ -12,7 +13,9 @@ public:
     void updateLatinka();
 
 private:
-    QLabel *m_result;
+    QLabel *m_left;
+    QLabel *m_right;
+    QTextEdit *m_result;
     QTextEdit *m_textEdit;
-    QVBoxLayout *m_layout;
+    Latinka::Alphabet currentAlp;
 };

@@ -45,6 +45,7 @@ private:
         bool isUpper     (const std::wstring& letter) const;
     };
     typedef Letter::Type LType;
+    inline std::wstring toWStr(const wchar_t& c) const;
     void addLetter(Letter::Type type, std::wstring latinL, std::wstring latinU,
                    std::wstring ukrL, std::wstring ukrU);
 
@@ -55,10 +56,12 @@ private:
     LType    getLetterType      (const wchar_t& l) const;
     Alphabet getLetterAlphabet  (const wchar_t& l) const;
     bool isLetterCompareAlphabet(const Alphabet& type, const std::wstring& str) const;
+    bool isLower(const std::wstring& l) const;
+    bool testSoftLetterWithDoubleEnd(const std::wstring& str) const;
 
-    std::wstring toLower(const std::wstring& letter) const;
-    std::wstring toUpper(const std::wstring& letter) const;
-    std::wstring toLatin(const std::wstring& letter) const;
+    std::wstring toLower     (const std::wstring& letter) const;
+    std::wstring toUpper     (const std::wstring& letter) const;
+    std::wstring toLatin     (const std::wstring& letter) const;
     std::wstring toUkrajinska(const std::wstring& letter) const;
 
     // we send current alphabet type, and translitterate to another one
