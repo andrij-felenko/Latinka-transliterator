@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QIcon>
 #include "mainWindow.h"
 
 int main(int argc, char** argv)
@@ -11,6 +12,8 @@ int main(int argc, char** argv)
     QApplication app(argc, argv);
 
     MainWindow w;
+    w.setWindowTitle("Latinka translitterator");
+    w.setWindowIcon(QIcon(":/icon.png"));
     w.show();
 
     return app.exec();

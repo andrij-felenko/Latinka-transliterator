@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>choven.txt</file>
+        <file>icon.png</file>
     </qresource>
 </RCC>
