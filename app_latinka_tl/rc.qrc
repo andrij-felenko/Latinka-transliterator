@@ -2,8 +2,9 @@
     <qresource prefix="/">
         <file>choven.txt</file>
         <file>icon.png</file>
-        <file>latinka_rules.html</file>
         <file>alphabet.html</file>
         <file>rules.html</file>
+        <file>xkb.html</file>
+        <file>keyboard_layout.html</file>
     </qresource>
 </RCC>

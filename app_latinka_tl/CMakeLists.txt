@@ -3,6 +3,7 @@ project(latinka_transliteracija)
 
 set (CMAKE_AUTORCC ON)
 find_package(Qt5Core)
+find_package(Qt5Gui)
 find_package(Qt5Widgets)
 
 set (lt_src
@@ -12,7 +13,7 @@ set (lt_src
     )
 
 add_executable(latinka_transliteracija ${lt_src} rc.qrc)
-target_link_libraries(latinka_transliteracija lib_latinka_tl Qt5::Core Qt5::Widgets)
+target_link_libraries(latinka_transliteracija lib_latinka_tl Qt5::Core Qt5::Gui Qt5::Widgets)
 target_include_directories(latinka_transliteracija
     PUBLIC $<TARGET_PROPERTY:lib_latinka_tl,INTERFACE_INCLUDE_DIRECTORIES>
     )

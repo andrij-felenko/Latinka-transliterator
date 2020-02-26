@@ -180,7 +180,7 @@ std::wstring Latinka::Converter::translitterateWord(const Alphabet &from, std::w
                                              || (getLetterType(str[0]) == LType::Consonantal
                                                  && getLetterType(str[1]) == LType::DoubleLoud)))
              || (from == Alphabet::Latin && (isLetterCompareAlphabet(Alphabet::Latin, str.substr(0, 2))
-                                             || str[1] == L'\u030C'))){
+                                             || (str[1] == L'\u030C' && getLetterType(str[0]) != Letter::Hissing)))){
         result += translitterateLetter(from, str[0], str[1]);
         str.erase(0, 2);
         result += translitterateWord(from, str);
@@ -216,6 +216,8 @@ std::wstring Latinka::Converter::translitterateLetter(const Alphabet& from, cons
             res += translitterateLetter(from, L'j' + c2);
         }
         else if (c1 == L"j" || c1 == L"J") // doubleLoud Letter
+            res += translitterateLetter(from, c1 + c2);
+        else if (c2 == L"\u030C" && getLetterType(c1 + c2) == Letter::Hissing)
             res += translitterateLetter(from, c1 + c2);
         else if (c2 == L"\u030C"){
             res += translitterateLetter(from, c1);

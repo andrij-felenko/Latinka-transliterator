@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include "lib_latinka_tl/latinkaConverter.h"
 
-class MainWindow : public QStackedWidget
+class MainWindow : public QTabWidget
 {
     Q_OBJECT
 public:

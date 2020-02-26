@@ -1,9 +1,12 @@
 #include "mainWindow.h"
 #include <QtWidgets>
 #include <QFile>
+#include <QPixmap>
 
 MainWindow::MainWindow() : currentAlp(Latinka::Alphabet::Latin)
 {
+    tabBar()->setExpanding(true);
+
     createTranslitterateWindow();
     createHelpWindow();
 }
@@ -27,12 +30,9 @@ void MainWindow::createTranslitterateWindow()
     m_right->setAlignment(Qt::AlignRight);
     QPushButton* switchB = new QPushButton("< – >");
     switchB->setFixedWidth(40);
-    QPushButton* helpB = new QPushButton("?");
-    helpB->setFixedSize(30, 30);
     headerLayout->addWidget(m_left);
     headerLayout->addWidget(switchB);
     headerLayout->addWidget(m_right);
-    headerLayout->addWidget(helpB);
 
     QHBoxLayout* textLayout = new QHBoxLayout();
     m_result = new QTextEdit(this);
@@ -50,7 +50,7 @@ void MainWindow::createTranslitterateWindow()
     mainLayout->setMargin(10);
 
     convertWidget->setLayout(mainLayout);
-    this->addWidget(convertWidget);
+    this->addTab(convertWidget, "Convert");
 
     QObject::connect(switchB, &QPushButton::clicked, [=](){
         currentAlp = currentAlp == Latinka::Alphabet::Latin ? Latinka::Alphabet::Cyrillic : Latinka::Alphabet::Latin;
@@ -58,7 +58,6 @@ void MainWindow::createTranslitterateWindow()
         m_right->setText(currentAlp == Latinka::Alphabet::Latin ? "Українська" : "Latinka");
         m_textEdit->setText(m_result->toPlainText());
     });
-    QObject::connect(helpB, &QPushButton::clicked, [=](){ setCurrentIndex(1); });
     switchB->click();
 
     QObject::connect(m_textEdit, &QTextEdit::textChanged, this, &MainWindow::updateLatinka);
@@ -73,82 +72,43 @@ void MainWindow::createTranslitterateWindow()
         qDebug() << "File not open: " << file.errorString();
 
     this->setMinimumSize(500, 400);
-    this->resize(700, 600);
+    this->resize(750, 600);
 }
 
 void MainWindow::createHelpWindow()
 {
-    QWidget* helpWidget = new QWidget();
-    QGridLayout* grid = new QGridLayout(helpWidget);
-
-    QPushButton* backB = new QPushButton("x");
-    backB->setFixedWidth(25);
-    QObject::connect(backB, &QPushButton::clicked, [=](){ setCurrentIndex(0); });
-    grid->addWidget(backB, 0, 8, 1, 1);
-
+    QWidget* alpWidget = new QWidget();
+    QHBoxLayout* alpLayout = new QHBoxLayout(alpWidget);
+    alpLayout->addWidget(new QWidget(this));
     QTextBrowser* alpHtml = new QTextBrowser();
-    alpHtml->setFixedWidth(120);
-    auto alpFont = alpHtml->font();
-    alpFont.setFamily("monospace [Consolas]");
-    alpFont.setFixedPitch(true);
-    alpHtml->setFont(alpFont);
-    alpHtml->setText("  Алфавіт\n"
-                     "а  А  a  A\n"
-                     "б  Б  b  B\n"
-                     "в  В  v  V\n"
-                     "г  Г  h  H\n"
-                     "ґ  Ґ  g  G\n"
-                     "д  Д  d  D\n"
-                     "е  Е  e  E\n"
-                     "є  Є  je Je\n"
-                     "ж  Ж  ʒ  Ʒ\n"
-                     "з  З  z  Z\n"
-                     "и  И  y  Y\n"
-                     "і  І  i  I\n"
-                     "ї  Ї  ji Ji\n"
-                     "й  Й  j  J\n"
-                     "к  К  k  K\n"
-                     "л  Л  l  L\n"
-                     "м  М  m  M\n"
-                     "н  Н  n  N\n"
-                     "о  О  o  O\n"
-                     "п  П  p  P \n"
-                     "р  Р  r  R\n"
-                     "с  С  s  S\n"
-                     "т  Т  t  T\n"
-                     "у  У  u  U\n"
-                     "ф  Ф  f  F\n"
-                     "х  Х  x  X\n"
-                     "ц  Ц  c  C\n"
-                     "ч  Ч  ć  Č\n"
-                     "ш  Ш  ś  Š\n"
-                     "щ  Щ  ść Šć\n"
-                     "я  Я  ja Ja\n"
-                     "ю  Ю  ju Ju\n"
-                     "вв Вв w  W\n");
-//    alpHtml->document()->setPageSize(QSize(120, 1000));
-    grid->addWidget(alpHtml, 0, 0, 15, 1);
+    alpHtml->setSource(QUrl("qrc:/alphabet.html"));
+    alpHtml->setMaximumWidth(400);
     alpHtml->setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
     alpHtml->setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
+    alpLayout->addWidget(alpHtml);
+    alpLayout->addWidget(new QWidget(this));
+    addTab(alpWidget, "Alphabet");
 
     QTextBrowser* rulesHtml = new QTextBrowser();
     rulesHtml->setSource(QUrl("qrc:/rules.html"));
-    grid->addWidget(rulesHtml, 0, 1, 8, 4);
     rulesHtml->setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
     rulesHtml->setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
-
-    QLabel* xkbTitle = new QLabel();
-    xkbTitle->setText("XKB файл");
-    xkbTitle->setAlignment(Qt::AlignCenter);
-    grid->addWidget(xkbTitle, 0, 5, 1, 3);
+    addTab(rulesHtml, "Rules");
 
     QTextBrowser* xkbHtml = new QTextBrowser();
-    xkbHtml->setSource(QUrl("qrc:/latinka_rules.html"));
-    grid->addWidget(xkbHtml, 1, 5, 7, 4);
+    xkbHtml->setSource(QUrl("qrc:/xkb.html"));
+    addTab(xkbHtml, "Xkb файл");
 
-    QLabel* keybLayout = new QLabel();
-    grid->addWidget(keybLayout, 8, 1, 7, 8);
-
-    helpWidget->setLayout(grid);
-    this->addWidget(helpWidget);
+    QWidget* keybWidget = new QWidget();
+    QVBoxLayout* keybLayout = new QVBoxLayout(keybWidget);
+    keybLayout->addWidget(new QWidget(this));
+    QTextBrowser* keybHtml = new QTextBrowser();
+    keybHtml->setSource(QUrl("qrc:/keyboard_layout.html"));
+    keybHtml->setMaximumHeight(400);
+    keybHtml->setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
+    keybHtml->setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAlwaysOff);
+    keybLayout->addWidget(keybHtml);
+    keybLayout->addWidget(new QWidget(this));
+    keybWidget->setLayout(keybLayout);
+    addTab(keybWidget, "Keyboard layout");
 }
