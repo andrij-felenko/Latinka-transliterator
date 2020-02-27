@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QIcon>
 #include "mainWindow.h"
+#include "darkTheme.h"
 
 int main(int argc, char** argv)
 {
@@ -10,6 +11,7 @@ int main(int argc, char** argv)
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
 
     QApplication app(argc, argv);
+    setDarkTheme();
 
     MainWindow w;
     w.setWindowTitle("Латинкова транслітерація");

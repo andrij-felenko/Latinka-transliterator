@@ -10,6 +10,7 @@ set (lt_src
     main.cpp
     mainWindow.h
     mainWindow.cpp
+    darkTheme.h
     )
 
 add_executable(latinka_transliteracija ${lt_src} rc.qrc)
