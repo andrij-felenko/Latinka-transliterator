@@ -47,7 +47,7 @@ void MainWindow::createTranslitterateWindow()
     mainLayout->addWidget(header);
     mainLayout->addLayout(textLayout);
     mainLayout->setSpacing(0);
-    mainLayout->setMargin(10);
+    mainLayout->setContentsMargins(10, 10, 10, 10);
 
     convertWidget->setLayout(mainLayout);
     this->addTab(convertWidget, "Транслітерування");

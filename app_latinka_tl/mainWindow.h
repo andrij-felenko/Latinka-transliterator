@@ -1,9 +1,11 @@
-#include <QtWidgets>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QTextEdit>
 #include "lib_latinka_tl/latinkaConverter.h"
 
 class MainWindow : public QTabWidget
 {
-    Q_OBJECT
+//    Q_OBJECT
 public:
     MainWindow();
 
