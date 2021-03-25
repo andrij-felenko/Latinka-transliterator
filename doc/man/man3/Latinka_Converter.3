@@ -1,26 +1,21 @@
-.TH "Latinka::Converter" 3 "Thu Mar 25 2021" "Latinka" \" -*- nroff -*-
+.TH "Latinka::Converter" 3 "Fri Mar 26 2021" "Latinka" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Latinka::Converter
+Latinka::Converter \- The \fBLatinka::Converter\fP class\&.  
+
 .SH SYNOPSIS
 .br
 .PP
 .PP
 \fC#include <latinkaConverter\&.h>\fP
-.SS "Classes"
-
-.in +1c
-.ti -1c
-.RI "struct \fBLetter\fP"
-.br
-.in -1c
 .SS "Static Public Member Functions"
 
 .in +1c
 .ti -1c
 .RI "static std::wstring \fBrun\fP (\fBAlphabet\fP from, std::wstring text)"
 .br
+.RI "run "
 .in -1c
 .SS "Private Types"
 
@@ -65,6 +60,7 @@ Latinka::Converter
 .ti -1c
 .RI "std::wstring \fBtoLatin\fP (const std::wstring &letter) const"
 .br
+.RI "\fBLatinka::Converter::toLatin\fP\&. "
 .ti -1c
 .RI "std::wstring \fBtoUkrajinska\fP (const std::wstring &letter) const"
 .br
@@ -77,6 +73,7 @@ Latinka::Converter
 .ti -1c
 .RI "std::wstring \fBtranslitterateLetter\fP (const \fBAlphabet\fP &from, const std::wstring &c1, const std::wstring &c2) const"
 .br
+.RI "\fBLatinka::Converter::translitterateLetter\fP\&. "
 .ti -1c
 .RI "std::wstring \fBtranslitterateLetter\fP (const \fBAlphabet\fP &from, const wchar_t &c1, const wchar_t &c2) const"
 .br
@@ -93,13 +90,15 @@ Latinka::Converter
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 18 of file latinkaConverter\&.h\&.
+The \fBLatinka::Converter\fP class\&. 
+.PP
+Definition at line 52 of file latinkaConverter\&.h\&.
 .SH "Member Typedef Documentation"
 .PP 
 .SS "typedef \fBLetter::Type\fP \fBLatinka::Converter::LType\fP\fC [private]\fP"
 
 .PP
-Definition at line 46 of file latinkaConverter\&.h\&.
+Definition at line 64 of file latinkaConverter\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Latinka::Converter::Converter ()\fC [private]\fP"
@@ -139,6 +138,21 @@ Definition at line 132 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::run (\fBAlphabet\fP from, std::wstring text)\fC [static]\fP"
 
 .PP
+run 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP 
+.br
+\fItext\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
 Definition at line 3 of file latinkaConverter\&.cpp\&.
 .SS "bool Latinka::Converter::testSoftLetterWithDoubleEnd (const std::wstring & str) const\fC [private]\fP"
 
@@ -147,11 +161,24 @@ Definition at line 140 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::toLatin (const std::wstring & letter) const\fC [private]\fP"
 
 .PP
-Definition at line 250 of file latinkaConverter\&.cpp\&.
+\fBLatinka::Converter::toLatin\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIletter\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Definition at line 260 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::toUkrajinska (const std::wstring & letter) const\fC [private]\fP"
 
 .PP
-Definition at line 262 of file latinkaConverter\&.cpp\&.
+Definition at line 272 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::toWStr (const wchar_t & c) const\fC [inline]\fP, \fC [private]\fP"
 
 .PP
@@ -159,19 +186,36 @@ Definition at line 150 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::translitterateLetter (const \fBAlphabet\fP & from, const std::wstring & c) const\fC [private]\fP"
 
 .PP
-Definition at line 243 of file latinkaConverter\&.cpp\&.
+Definition at line 248 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::translitterateLetter (const \fBAlphabet\fP & from, const std::wstring & c1, const std::wstring & c2) const\fC [private]\fP"
 
 .PP
-Definition at line 196 of file latinkaConverter\&.cpp\&.
+\fBLatinka::Converter::translitterateLetter\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP 
+.br
+\fIc1\fP 
+.br
+\fIc2\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Definition at line 201 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::translitterateLetter (const \fBAlphabet\fP & from, const wchar_t & c) const\fC [private]\fP"
 
 .PP
-Definition at line 238 of file latinkaConverter\&.cpp\&.
+Definition at line 243 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::translitterateLetter (const \fBAlphabet\fP & from, const wchar_t & c1, const wchar_t & c2) const\fC [private]\fP"
 
 .PP
-Definition at line 233 of file latinkaConverter\&.cpp\&.
+Definition at line 238 of file latinkaConverter\&.cpp\&.
 .SS "std::wstring Latinka::Converter::translitterateWord (const \fBAlphabet\fP & from, std::wstring str) const\fC [private]\fP"
 
 .PP
@@ -181,7 +225,7 @@ Definition at line 157 of file latinkaConverter\&.cpp\&.
 .SS "std::list<\fBLetter\fP> Latinka::Converter::m_list\fC [private]\fP"
 
 .PP
-Definition at line 52 of file latinkaConverter\&.h\&.
+Definition at line 70 of file latinkaConverter\&.h\&.
 
 .SH "Author"
 .PP 

@@ -1,0 +1,188 @@
+\hypertarget{structLatinka_1_1Letter}{}\doxysection{Latinka\+::Letter Struct Reference}
+\label{structLatinka_1_1Letter}\index{Latinka::Letter@{Latinka::Letter}}
+
+
+The \mbox{\hyperlink{structLatinka_1_1Letter}{Latinka\+::\+Letter}} struct.  
+
+
+
+
+{\ttfamily \#include $<$latinka\+Converter.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}{Type}} 
+\begin{DoxyCompactList}\small\item\em The Type enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structLatinka_1_1Letter_a1c53682c8f60d23e0d45414e2d82a27b}{contains}} (const std\+::wstring \&letter) const
+\item 
+bool \mbox{\hyperlink{structLatinka_1_1Letter_aaabf6064f33884e79d7b7db68e60dbaa}{is\+Latin}} (const std\+::wstring \&letter) const
+\item 
+bool \mbox{\hyperlink{structLatinka_1_1Letter_ac29b5772d8267c41b84adf0066d9dcac}{is\+Ukrajinska}} (const std\+::wstring \&letter) const
+\item 
+bool \mbox{\hyperlink{structLatinka_1_1Letter_ab2447ae58e8dbde2acb9a51f14405363}{is\+Lower}} (const std\+::wstring \&letter) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}{Type}} \mbox{\hyperlink{structLatinka_1_1Letter_a7caee25a1d97b453468a3b6c6b5017d7}{type}}
+\item 
+std\+::wstring \mbox{\hyperlink{structLatinka_1_1Letter_a05104efafe841e34530b7aed01d50c04}{latin\+Lower}}
+\item 
+std\+::wstring \mbox{\hyperlink{structLatinka_1_1Letter_a0e62f3e15a7796e8bef9a2760009a6af}{latin\+Upper}}
+\item 
+std\+::wstring \mbox{\hyperlink{structLatinka_1_1Letter_aaa82edda18c87c1e33b60fb09829a705}{ukrajinska\+Lower}}
+\item 
+std\+::wstring \mbox{\hyperlink{structLatinka_1_1Letter_ac29674079c77cbf76f8e8b9ca76dcffa}{ukrajinska\+Upper}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{structLatinka_1_1Letter}{Latinka\+::\+Letter}} struct. 
+
+Definition at line 25 of file latinka\+Converter.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}} 
+\index{Latinka::Letter@{Latinka::Letter}!Type@{Type}}
+\index{Type@{Type}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}{Latinka\+::\+Letter\+::\+Type}}}
+
+
+
+The Type enum. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Loud@{Loud}!Latinka::Letter@{Latinka::Letter}}\index{Latinka::Letter@{Latinka::Letter}!Loud@{Loud}}}\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a99d8c5fc2432de0abfe6b7b18c3fdffa}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a99d8c5fc2432de0abfe6b7b18c3fdffa}} 
+Loud&loud letter \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DoubleLoud@{DoubleLoud}!Latinka::Letter@{Latinka::Letter}}\index{Latinka::Letter@{Latinka::Letter}!DoubleLoud@{DoubleLoud}}}\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a0a873d7fe38a7b4e468c293f7a225701}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a0a873d7fe38a7b4e468c293f7a225701}} 
+Double\+Loud&loud letter contains two symbol as ja, ju etc \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Consonantal@{Consonantal}!Latinka::Letter@{Latinka::Letter}}\index{Latinka::Letter@{Latinka::Letter}!Consonantal@{Consonantal}}}\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82adcc807058ae50e30c375b1694d8cc852}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82adcc807058ae50e30c375b1694d8cc852}} 
+Consonantal&softly\+: s, c, etc \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NoSoftly@{NoSoftly}!Latinka::Letter@{Latinka::Letter}}\index{Latinka::Letter@{Latinka::Letter}!NoSoftly@{NoSoftly}}}\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a448f479d840f9d61f1280a249a6713d8}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a448f479d840f9d61f1280a249a6713d8}} 
+No\+Softly&boo \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!Latinka::Letter@{Latinka::Letter}}\index{Latinka::Letter@{Latinka::Letter}!None@{None}}}\mbox{\Hypertarget{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a2de521da46c3e2a1caea5b042ae4e0fd}\label{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82a2de521da46c3e2a1caea5b042ae4e0fd}} 
+None&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 29 of file latinka\+Converter.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structLatinka_1_1Letter_a1c53682c8f60d23e0d45414e2d82a27b}\label{structLatinka_1_1Letter_a1c53682c8f60d23e0d45414e2d82a27b}} 
+\index{Latinka::Letter@{Latinka::Letter}!contains@{contains}}
+\index{contains@{contains}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool Latinka\+::\+Letter\+::contains (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{letter }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 73 of file latinka\+Converter.\+cpp.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_aaabf6064f33884e79d7b7db68e60dbaa}\label{structLatinka_1_1Letter_aaabf6064f33884e79d7b7db68e60dbaa}} 
+\index{Latinka::Letter@{Latinka::Letter}!isLatin@{isLatin}}
+\index{isLatin@{isLatin}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{isLatin()}{isLatin()}}
+{\footnotesize\ttfamily bool Latinka\+::\+Letter\+::is\+Latin (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{letter }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 78 of file latinka\+Converter.\+cpp.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_ab2447ae58e8dbde2acb9a51f14405363}\label{structLatinka_1_1Letter_ab2447ae58e8dbde2acb9a51f14405363}} 
+\index{Latinka::Letter@{Latinka::Letter}!isLower@{isLower}}
+\index{isLower@{isLower}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{isLower()}{isLower()}}
+{\footnotesize\ttfamily bool Latinka\+::\+Letter\+::is\+Lower (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{letter }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 88 of file latinka\+Converter.\+cpp.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_ac29b5772d8267c41b84adf0066d9dcac}\label{structLatinka_1_1Letter_ac29b5772d8267c41b84adf0066d9dcac}} 
+\index{Latinka::Letter@{Latinka::Letter}!isUkrajinska@{isUkrajinska}}
+\index{isUkrajinska@{isUkrajinska}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{isUkrajinska()}{isUkrajinska()}}
+{\footnotesize\ttfamily bool Latinka\+::\+Letter\+::is\+Ukrajinska (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{letter }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 83 of file latinka\+Converter.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structLatinka_1_1Letter_a05104efafe841e34530b7aed01d50c04}\label{structLatinka_1_1Letter_a05104efafe841e34530b7aed01d50c04}} 
+\index{Latinka::Letter@{Latinka::Letter}!latinLower@{latinLower}}
+\index{latinLower@{latinLower}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{latinLower}{latinLower}}
+{\footnotesize\ttfamily std\+::wstring Latinka\+::\+Letter\+::latin\+Lower}
+
+
+
+Definition at line 38 of file latinka\+Converter.\+h.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_a0e62f3e15a7796e8bef9a2760009a6af}\label{structLatinka_1_1Letter_a0e62f3e15a7796e8bef9a2760009a6af}} 
+\index{Latinka::Letter@{Latinka::Letter}!latinUpper@{latinUpper}}
+\index{latinUpper@{latinUpper}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{latinUpper}{latinUpper}}
+{\footnotesize\ttfamily std\+::wstring Latinka\+::\+Letter\+::latin\+Upper}
+
+
+
+Definition at line 39 of file latinka\+Converter.\+h.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_a7caee25a1d97b453468a3b6c6b5017d7}\label{structLatinka_1_1Letter_a7caee25a1d97b453468a3b6c6b5017d7}} 
+\index{Latinka::Letter@{Latinka::Letter}!type@{type}}
+\index{type@{type}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structLatinka_1_1Letter_a97631bfefe9d463ebd2fe9c241d11e82}{Type}} Latinka\+::\+Letter\+::type}
+
+
+
+Definition at line 37 of file latinka\+Converter.\+h.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_aaa82edda18c87c1e33b60fb09829a705}\label{structLatinka_1_1Letter_aaa82edda18c87c1e33b60fb09829a705}} 
+\index{Latinka::Letter@{Latinka::Letter}!ukrajinskaLower@{ukrajinskaLower}}
+\index{ukrajinskaLower@{ukrajinskaLower}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{ukrajinskaLower}{ukrajinskaLower}}
+{\footnotesize\ttfamily std\+::wstring Latinka\+::\+Letter\+::ukrajinska\+Lower}
+
+
+
+Definition at line 40 of file latinka\+Converter.\+h.
+
+\mbox{\Hypertarget{structLatinka_1_1Letter_ac29674079c77cbf76f8e8b9ca76dcffa}\label{structLatinka_1_1Letter_ac29674079c77cbf76f8e8b9ca76dcffa}} 
+\index{Latinka::Letter@{Latinka::Letter}!ukrajinskaUpper@{ukrajinskaUpper}}
+\index{ukrajinskaUpper@{ukrajinskaUpper}!Latinka::Letter@{Latinka::Letter}}
+\doxysubsubsection{\texorpdfstring{ukrajinskaUpper}{ukrajinskaUpper}}
+{\footnotesize\ttfamily std\+::wstring Latinka\+::\+Letter\+::ukrajinska\+Upper}
+
+
+
+Definition at line 41 of file latinka\+Converter.\+h.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib\+\_\+latinka\+\_\+tl/include/lib\+\_\+latinka\+\_\+tl/\mbox{\hyperlink{latinkaConverter_8h}{latinka\+Converter.\+h}}\item 
+lib\+\_\+latinka\+\_\+tl/\mbox{\hyperlink{latinkaConverter_8cpp}{latinka\+Converter.\+cpp}}\end{DoxyCompactItemize}

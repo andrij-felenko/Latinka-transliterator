@@ -1,0 +1,128 @@
+.TH "Latinka::Letter" 3 "Fri Mar 26 2021" "Latinka" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Latinka::Letter \- The \fBLatinka::Letter\fP struct\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <latinkaConverter\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBType\fP "
+.br
+.RI "The Type enum\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBcontains\fP (const std::wstring &letter) const"
+.br
+.ti -1c
+.RI "bool \fBisLatin\fP (const std::wstring &letter) const"
+.br
+.ti -1c
+.RI "bool \fBisUkrajinska\fP (const std::wstring &letter) const"
+.br
+.ti -1c
+.RI "bool \fBisLower\fP (const std::wstring &letter) const"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBType\fP \fBtype\fP"
+.br
+.ti -1c
+.RI "std::wstring \fBlatinLower\fP"
+.br
+.ti -1c
+.RI "std::wstring \fBlatinUpper\fP"
+.br
+.ti -1c
+.RI "std::wstring \fBukrajinskaLower\fP"
+.br
+.ti -1c
+.RI "std::wstring \fBukrajinskaUpper\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBLatinka::Letter\fP struct\&. 
+.PP
+Definition at line 25 of file latinkaConverter\&.h\&.
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBLatinka::Letter::Type\fP"
+
+.PP
+The Type enum\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fILoud \fP\fP
+loud letter 
+.TP
+\fB\fIDoubleLoud \fP\fP
+loud letter contains two symbol as ja, ju etc 
+.TP
+\fB\fIConsonantal \fP\fP
+softly: s, c, etc 
+.TP
+\fB\fINoSoftly \fP\fP
+boo 
+.TP
+\fB\fINone \fP\fP
+.PP
+Definition at line 29 of file latinkaConverter\&.h\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "bool Latinka::Letter::contains (const std::wstring & letter) const"
+
+.PP
+Definition at line 73 of file latinkaConverter\&.cpp\&.
+.SS "bool Latinka::Letter::isLatin (const std::wstring & letter) const"
+
+.PP
+Definition at line 78 of file latinkaConverter\&.cpp\&.
+.SS "bool Latinka::Letter::isLower (const std::wstring & letter) const"
+
+.PP
+Definition at line 88 of file latinkaConverter\&.cpp\&.
+.SS "bool Latinka::Letter::isUkrajinska (const std::wstring & letter) const"
+
+.PP
+Definition at line 83 of file latinkaConverter\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "std::wstring Latinka::Letter::latinLower"
+
+.PP
+Definition at line 38 of file latinkaConverter\&.h\&.
+.SS "std::wstring Latinka::Letter::latinUpper"
+
+.PP
+Definition at line 39 of file latinkaConverter\&.h\&.
+.SS "\fBType\fP Latinka::Letter::type"
+
+.PP
+Definition at line 37 of file latinkaConverter\&.h\&.
+.SS "std::wstring Latinka::Letter::ukrajinskaLower"
+
+.PP
+Definition at line 40 of file latinkaConverter\&.h\&.
+.SS "std::wstring Latinka::Letter::ukrajinskaUpper"
+
+.PP
+Definition at line 41 of file latinkaConverter\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Latinka from the source code\&.
