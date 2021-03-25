@@ -1,0 +1,100 @@
+.TH "MainWindow" 3 "Thu Mar 25 2021" "Latinka" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MainWindow
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mainWindow\&.h>\fP
+.PP
+Inherits QTabWidget\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMainWindow\fP ()"
+.br
+.ti -1c
+.RI "void \fBupdateLatinka\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcreateTranslitterateWindow\fP ()"
+.br
+.ti -1c
+.RI "void \fBcreateHelpWindow\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QLabel * \fBm_left\fP"
+.br
+.ti -1c
+.RI "QLabel * \fBm_right\fP"
+.br
+.ti -1c
+.RI "QTextEdit * \fBm_result\fP"
+.br
+.ti -1c
+.RI "QTextEdit * \fBm_textEdit\fP"
+.br
+.ti -1c
+.RI "\fBLatinka::Alphabet\fP \fBcurrentAlp\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 6 of file mainWindow\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MainWindow::MainWindow ()"
+
+.PP
+Definition at line 6 of file mainWindow\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void MainWindow::createHelpWindow ()\fC [private]\fP"
+
+.PP
+Definition at line 78 of file mainWindow\&.cpp\&.
+.SS "void MainWindow::createTranslitterateWindow ()\fC [private]\fP"
+
+.PP
+Definition at line 20 of file mainWindow\&.cpp\&.
+.SS "void MainWindow::updateLatinka ()"
+
+.PP
+Definition at line 14 of file mainWindow\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBLatinka::Alphabet\fP MainWindow::currentAlp\fC [private]\fP"
+
+.PP
+Definition at line 22 of file mainWindow\&.h\&.
+.SS "QLabel* MainWindow::m_left\fC [private]\fP"
+
+.PP
+Definition at line 18 of file mainWindow\&.h\&.
+.SS "QTextEdit* MainWindow::m_result\fC [private]\fP"
+
+.PP
+Definition at line 20 of file mainWindow\&.h\&.
+.SS "QLabel* MainWindow::m_right\fC [private]\fP"
+
+.PP
+Definition at line 19 of file mainWindow\&.h\&.
+.SS "QTextEdit* MainWindow::m_textEdit\fC [private]\fP"
+
+.PP
+Definition at line 21 of file mainWindow\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Latinka from the source code\&.
