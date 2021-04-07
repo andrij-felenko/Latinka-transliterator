@@ -1,5 +1,6 @@
 var classLatinka_1_1Converter =
 [
+    [ "Letter", "d6/d4d/structLatinka_1_1Converter_1_1Letter.html", "d6/d4d/structLatinka_1_1Converter_1_1Letter" ],
     [ "LType", "d2/d7a/classLatinka_1_1Converter.html#af6b59ea0b5fcca1d4ed5c9adf058fbfc", null ],
     [ "Converter", "d2/d7a/classLatinka_1_1Converter.html#a85c018ec2d647b1ce84a77cd2a671fa4", null ],
     [ "addLetter", "d2/d7a/classLatinka_1_1Converter.html#a4333455820636ba6fbbc4fc4df7d2982", null ],

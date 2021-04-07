@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_94',['type',['../d1/df2/structLatinka_1_1Letter.html#a7caee25a1d97b453468a3b6c6b5017d7',1,'Latinka::Letter']]]
+  ['type_94',['type',['../d6/d4d/structLatinka_1_1Converter_1_1Letter.html#a71d8e3c9d797bcb47c8d26dfb936ba03',1,'Latinka::Converter::Letter']]]
 ];
